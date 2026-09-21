@@ -7,4 +7,4 @@ For example, inputting the number "6" would result in the code outputting the nu
 
 ## System Architecture Diagram
 
-![System Diagram](system_diagram.png)
+![System Diagram](SystemDiagram.png)
