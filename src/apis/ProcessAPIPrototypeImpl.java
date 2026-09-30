@@ -2,19 +2,21 @@ package apis;
 
 import project.annotations.ProcessAPIPrototype;
 
-public class ProcessAPIPrototypeImpl implements ProcessAPIInterface {
+public class ProcessAPIPrototypeImpl {
 
     @ProcessAPIPrototype
-    @Override
-    public IntegerStream readInput(InputSource source) {
-        // Prototype: return empty stream
-        return new IntegerStream(new int[0]);
-    }
+    public void prototypeProcessAPI(ProcessAPIInterface api) {
+        // mock input source
+        InputSource mockInput = null;
 
-    @ProcessAPIPrototype
-    @Override
-    public void writeOutput(OutputSource destination, IntegerStreamResult result) {
-        // Prototype: do nothing
+        // pretend to read data
+        IntegerStream stream = api.readInput(mockInput);
+
+        // mock output + result
+        OutputSource mockOutput = null;
+        IntegerStreamResult result = new IntegerStreamResult("mock-result");
+
+        // pretend to write data
+        api.writeOutput(mockOutput, result);
     }
 }
-
