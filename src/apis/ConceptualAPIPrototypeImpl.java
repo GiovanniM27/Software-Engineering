@@ -2,13 +2,12 @@ package apis;
 
 import project.annotations.ConceptualAPIPrototype;
 
-public class ConceptualAPIPrototypeImpl implements ConceptualAPIInterface {
+public class ConceptualAPIPrototypeImpl {
 
     @ConceptualAPIPrototype
-    @Override
-    public ComputationResult compute(ComputationInput input) {
-        // Prototype: return dummy result
-        return new ComputationResult("prototype-result");
+    public void prototypeConceptualAPI(ConceptualAPIInterface api) {
+        ComputationInput input = new ComputationInput(6);
+        ComputationResult result = api.compute(input);
+        // prototype does not need to do anything with result
     }
 }
-
