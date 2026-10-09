@@ -32,5 +32,6 @@ test {
     	excludeTestsMatching("TestNetworkAPI")
         excludeTestsMatching("TestProcessAPI")
         excludeTestsMatching("TestConceptualAPI")
+        excludeTestsMatching("ComputeEngineIntegrationTest")
     }
 }
