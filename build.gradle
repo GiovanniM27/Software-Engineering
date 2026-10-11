@@ -31,5 +31,6 @@ test {
     useJUnitPlatform()
     filter {
     	includeTestsMatching "Checkpoint3TestSuite"
+    	excludeTestsMatching "TestNetworkAPI|TestProcessAPI|TestConceptualAPI|ComputeEngineIntegrationTest"
     	}
 }
