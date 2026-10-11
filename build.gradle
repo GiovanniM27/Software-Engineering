@@ -30,9 +30,6 @@ dependencies {
 test {
     useJUnitPlatform()
     filter {
-        excludeTestsMatching("TestNetworkAPI")
-        excludeTestsMatching("TestProcessAPI")
-        excludeTestsMatching("TestConceptualAPI")
-        excludeTestsMatching("ComputeEngineIntegrationTest")
-    }
+    	includeTestsMatching "Checkpoint3TestSuite"
+    	}
 }
