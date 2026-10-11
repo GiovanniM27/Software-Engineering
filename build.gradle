@@ -35,4 +35,6 @@ test {
         excludeTestsMatching("TestConceptualAPI")
         excludeTestsMatching("ComputeEngineIntegrationTest")
     }
+    // Ensure test classes are compiled before running tests
+    dependsOn testClasses
 }
