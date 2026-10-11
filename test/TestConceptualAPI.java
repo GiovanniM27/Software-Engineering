@@ -11,8 +11,11 @@ public class TestConceptualAPI {
         // Mock interface-typed parameter
         ComputationInput mockInput = Mockito.mock(ComputationInput.class);
 
-        // Instantiate real implementation
-        ConceptualAPIImpl impl = new ConceptualAPIImpl();
+        // Mock the required ProcessAPIInterface dependency
+        ProcessAPIInterface mockProcessApi = Mockito.mock(ProcessAPIInterface.class);
+
+        // Instantiate real implementation WITH the mock dependency
+        ConceptualAPIImpl impl = new ConceptualAPIImpl(mockProcessApi);
 
         // Call the real method
         ComputationResult result = impl.compute(mockInput);
