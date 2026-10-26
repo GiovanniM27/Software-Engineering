@@ -23,3 +23,4 @@ public class TestConceptualAPI {
 
 	    Assertions.assertNotNull(impl);
 	}
+}
