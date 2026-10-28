@@ -22,4 +22,24 @@ public class TestConceptualAPI {
 
         Assertions.assertTrue(true);
     }
+    
+    @Test
+    public void testFactorsOfOne() {
+
+        ProcessAPIInterface mockProcessApi =
+                Mockito.mock(ProcessAPIInterface.class);
+
+        ConceptualAPIImpl impl =
+                new ConceptualAPIImpl(mockProcessApi);
+
+        ComputationInput input =
+                new ComputationInput(1);
+
+        ComputationResult result =
+                impl.compute(input);
+
+        Assertions.assertEquals(
+                "1",
+                result.getFormattedResult());
+    }
 }
