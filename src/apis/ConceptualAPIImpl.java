@@ -1,9 +1,7 @@
 package apis;
 
-import apis.ConceptualAPIInterface;
-import apis.ComputationInput;
-import apis.ComputationResult;
-import apis.ProcessAPIInterface;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConceptualAPIImpl implements ConceptualAPIInterface {
 
@@ -15,7 +13,30 @@ public class ConceptualAPIImpl implements ConceptualAPIInterface {
 
     @Override
     public ComputationResult compute(ComputationInput input) {
-        // Empty implementation for Checkpoint 3
-        return null;
+
+        int value = input.getValue();
+
+        List<Integer> factors = new ArrayList<>();
+
+        for (int divisor = 1; divisor <= value; divisor++) {
+
+            if (value % divisor == 0) {
+                factors.add(divisor);
+            }
+        }
+
+        StringBuilder resultBuilder = new StringBuilder();
+
+        for (int i = 0; i < factors.size(); i++) {
+
+            resultBuilder.append(factors.get(i));
+
+            if (i < factors.size() - 1) {
+                resultBuilder.append(",");
+            }
+        }
+
+        return new ComputationResult(
+                resultBuilder.toString());
     }
 }
