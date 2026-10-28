@@ -1,25 +1,67 @@
 package apis;
 
-import apis.ProcessAPIInterface;
-import apis.InputSource;
-import apis.OutputSource;
-import apis.IntegerStream;
-import apis.IntegerStreamResult;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 
 public class ProcessAPIImpl implements ProcessAPIInterface {
 
     public ProcessAPIImpl() {
-        // empty constructor for Checkpoint 3
     }
 
     @Override
     public IntegerStream readInput(InputSource source) {
-        // Empty implementation for Checkpoint 3
-        return null;
+
+        if (!(source instanceof FileInputSource)) {
+            return null;
+        }
+
+        FileInputSource fileSource =
+                (FileInputSource) source;
+
+        try {
+
+            List<String> lines =
+                    Files.readAllLines(
+                            Path.of(fileSource.getFilePath()));
+
+            int[] values =
+                    new int[lines.size()];
+
+            for (int i = 0; i < lines.size(); i++) {
+                values[i] =
+                        Integer.parseInt(
+                                lines.get(i).trim());
+            }
+
+            return new IntegerStream(values);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public void writeOutput(OutputSource destination, IntegerStreamResult result) {
-        // Empty implementation for Checkpoint 3
+    public void writeOutput(
+            OutputSource destination,
+            IntegerStreamResult result) {
+
+        if (!(destination instanceof FileOutputSource)) {
+            return;
+        }
+
+        FileOutputSource fileDestination =
+                (FileOutputSource) destination;
+
+        try {
+
+            Files.writeString(
+                    Path.of(fileDestination.getFilePath()),
+                    result.getFormattedResult());
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
