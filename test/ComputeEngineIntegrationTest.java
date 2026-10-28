@@ -12,29 +12,40 @@ public class ComputeEngineIntegrationTest {
     @org.junit.jupiter.api.Test
     public void testIntegration() {
 
-        List<Integer> inputValues = List.of(1, 10, 25);
-        TestInputConfig inputConfig = new TestInputConfig(inputValues);
+        List<Integer> inputValues =
+                List.of(1, 10, 25);
 
-        List<String> outputValues = new ArrayList<>();
-        TestOutputConfig outputConfig = new TestOutputConfig(outputValues);
+        TestInputConfig inputConfig =
+                new TestInputConfig(inputValues);
 
-        // Test-only ProcessAPI implementation
-        ProcessAPIInterface processApi = new TestDataStoreImpl(inputConfig, outputConfig);
+        List<String> outputValues =
+                new ArrayList<>();
 
-        // Required constructor calls
-        NetworkAPIImpl networkApi = new NetworkAPIImpl();
-        ConceptualAPIImpl conceptualApi = new ConceptualAPIImpl(processApi);
+        TestOutputConfig outputConfig =
+                new TestOutputConfig(outputValues);
 
-        // Dummy computation input
-        ComputationInput computationInput = new ComputationInput(1);
+        ProcessAPIInterface processApi =
+                new TestDataStoreImpl(
+                        inputConfig,
+                        outputConfig);
 
-        // Call compute (will return null for now)
-        ComputationResult result = conceptualApi.compute(computationInput);
+        ConceptualAPIImpl conceptualApi =
+                new ConceptualAPIImpl(processApi);
 
-        // Write output
+        NetworkAPIImpl networkApi =
+                new NetworkAPIImpl(
+                        conceptualApi,
+                        processApi);
+
+        ComputationInput computationInput =
+                new ComputationInput(1);
+
+        ComputationResult result =
+                conceptualApi.compute(computationInput);
+
         processApi.writeOutput(null, null);
 
-        // Intentional failure (Checkpoint 3)
-        org.junit.jupiter.api.Assertions.assertFalse(outputValues.isEmpty());
+        org.junit.jupiter.api.Assertions
+                .assertFalse(outputValues.isEmpty());
     }
 }

@@ -1,26 +1,27 @@
 package apis;
 
-import project.annotations.NetworkAPI;
-import apis.NetworkAPIInterface;
-import apis.InputSource;
-import apis.OutputSource;
-import apis.Delimiters;
-import apis.JobConfiguration;
-
-
 public class NetworkAPIImpl implements NetworkAPIInterface {
 
-    
+    private final ConceptualAPIInterface conceptualApi;
+    private final ProcessAPIInterface processApi;
 
-    public NetworkAPIImpl() {
-        // empty constructor for now
+    public NetworkAPIImpl(
+            ConceptualAPIInterface conceptualApi,
+            ProcessAPIInterface processApi) {
+
+        this.conceptualApi = conceptualApi;
+        this.processApi = processApi;
     }
 
     @Override
-    public JobConfiguration configureJob(InputSource input,
-                                          OutputSource output,
-                                          Delimiters delimiters) {
-        // Empty implementation for Checkpoint 3
+    public JobConfiguration configureJob(
+            InputSource input,
+            OutputSource output,
+            Delimiters delimiters) {
+
+        // Coordinator implementation will be completed
+        // after ProcessAPIImpl is implemented
+
         return null;
     }
 }

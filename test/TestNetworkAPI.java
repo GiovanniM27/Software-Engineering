@@ -8,20 +8,33 @@ public class TestNetworkAPI {
 
     @Test
     public void smokeTestNetworkAPI() {
-        // Mock interface-typed parameters
-        InputSource mockInput = Mockito.mock(InputSource.class);
-        OutputSource mockOutput = Mockito.mock(OutputSource.class);
 
-        // Delimiters is NOT an interface, so no mock needed
-        Delimiters delimiters = new Delimiters(",", ";");
+        InputSource mockInput =
+                Mockito.mock(InputSource.class);
 
-        // Instantiate real implementation (required by static analyzer)
-        NetworkAPIImpl impl = new NetworkAPIImpl();
+        OutputSource mockOutput =
+                Mockito.mock(OutputSource.class);
 
-        // Call the real method (will return null)
-        JobConfiguration result = impl.configureJob(mockInput, mockOutput, delimiters);
+        ConceptualAPIInterface mockConceptualApi =
+                Mockito.mock(ConceptualAPIInterface.class);
 
-        // Structural assertion only
-        Assertions.assertTrue(true);
+        ProcessAPIInterface mockProcessApi =
+                Mockito.mock(ProcessAPIInterface.class);
+
+        Delimiters delimiters =
+                new Delimiters(",", ";");
+
+        NetworkAPIImpl impl =
+                new NetworkAPIImpl(
+                        mockConceptualApi,
+                        mockProcessApi);
+
+        JobConfiguration result =
+                impl.configureJob(
+                        mockInput,
+                        mockOutput,
+                        delimiters);
+
+        Assertions.assertNotNull(impl);
     }
 }
