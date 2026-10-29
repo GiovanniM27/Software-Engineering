@@ -21,6 +21,15 @@ public class TestNetworkAPI {
         ProcessAPIInterface mockProcessApi =
                 Mockito.mock(ProcessAPIInterface.class);
 
+        Mockito.when(mockProcessApi.readInput(mockInput))
+                .thenReturn(new IntegerStream(new int[] {1}));
+
+        Mockito.when(
+                mockConceptualApi.compute(
+                        Mockito.any(ComputationInput.class)))
+                .thenReturn(
+                        new ComputationResult("1"));
+
         Delimiters delimiters =
                 new Delimiters(",", ";");
 
@@ -35,6 +44,6 @@ public class TestNetworkAPI {
                         mockOutput,
                         delimiters);
 
-        Assertions.assertNotNull(impl);
+        Assertions.assertNotNull(result);
     }
 }
