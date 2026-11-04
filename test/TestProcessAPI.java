@@ -20,6 +20,6 @@ public class TestProcessAPI {
         IntegerStream stream = impl.readInput(mockInput);
         impl.writeOutput(mockOutput, mockResult);
 
-        Assertions.assertTrue(true);
+        Assertions.assertNotNull(impl);;
     }
 }

@@ -16,13 +16,22 @@ public class TestDataStoreImpl implements ProcessAPIInterface {
 
     @Override
     public IntegerStream readInput(InputSource source) {
-        // For Checkpoint 3, returning null is acceptable.
-        return null;
+
+        int[] values =
+                new int[inputConfig.getValues().size()];
+
+        for (int i = 0; i < inputConfig.getValues().size(); i++) {
+            values[i] = inputConfig.getValues().get(i);
+        }
+
+        return new IntegerStream(values);
     }
 
     @Override
-    public void writeOutput(OutputSource destination, IntegerStreamResult result) {
-        // For Checkpoint 3, write a simple placeholder string.
-        outputConfig.getValues().add("Test output written");
+    public void writeOutput(OutputSource destination,
+                            IntegerStreamResult result) {
+
+        outputConfig.getValues().add(
+                result.getFormattedResult());
     }
 }

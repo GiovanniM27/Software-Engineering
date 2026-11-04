@@ -1,11 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import apis.NetworkAPIImpl;
 import apis.ConceptualAPIImpl;
+import apis.Delimiters;
+import apis.NetworkAPIImpl;
 import apis.ProcessAPIInterface;
-import apis.ComputationInput;
-import apis.ComputationResult;
 
 public class ComputeEngineIntegrationTest {
 
@@ -37,13 +36,10 @@ public class ComputeEngineIntegrationTest {
                         conceptualApi,
                         processApi);
 
-        ComputationInput computationInput =
-                new ComputationInput(1);
-
-        ComputationResult result =
-                conceptualApi.compute(computationInput);
-
-        processApi.writeOutput(null, null);
+        networkApi.configureJob(
+                null,
+                null,
+                new Delimiters(",", ";"));
 
         org.junit.jupiter.api.Assertions
                 .assertFalse(outputValues.isEmpty());
