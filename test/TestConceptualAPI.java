@@ -20,7 +20,7 @@ public class TestConceptualAPI {
         // Call the real method
         ComputationResult result = impl.compute(mockInput);
 
-        Assertions.assertTrue(true);
+        Assertions.assertNotNull(result);
     }
     
     @Test
