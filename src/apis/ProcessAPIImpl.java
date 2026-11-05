@@ -13,8 +13,12 @@ public class ProcessAPIImpl implements ProcessAPIInterface {
     @Override
     public IntegerStream readInput(InputSource source) {
 
+        if (source == null) {
+            return new IntegerStream(new int[0]);
+        }
+
         if (!(source instanceof FileInputSource)) {
-            return null;
+            return new IntegerStream(new int[0]);
         }
 
         FileInputSource fileSource =
@@ -37,8 +41,8 @@ public class ProcessAPIImpl implements ProcessAPIInterface {
 
             return new IntegerStream(values);
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            return new IntegerStream(new int[0]);
         }
     }
 
@@ -46,6 +50,10 @@ public class ProcessAPIImpl implements ProcessAPIInterface {
     public void writeOutput(
             OutputSource destination,
             IntegerStreamResult result) {
+
+        if (destination == null || result == null) {
+            return;
+        }
 
         if (!(destination instanceof FileOutputSource)) {
             return;
@@ -61,7 +69,7 @@ public class ProcessAPIImpl implements ProcessAPIInterface {
                     result.getFormattedResult());
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            // Swallow exception at API boundary
         }
     }
 }

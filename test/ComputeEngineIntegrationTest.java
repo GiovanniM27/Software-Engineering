@@ -36,9 +36,15 @@ public class ComputeEngineIntegrationTest {
                         conceptualApi,
                         processApi);
 
+        apis.InputSource inputSource =
+                org.mockito.Mockito.mock(apis.InputSource.class);
+
+        apis.OutputSource outputSource =
+                org.mockito.Mockito.mock(apis.OutputSource.class);
+
         networkApi.configureJob(
-                null,
-                null,
+                inputSource,
+                outputSource,
                 new Delimiters(",", ";"));
 
         org.junit.jupiter.api.Assertions

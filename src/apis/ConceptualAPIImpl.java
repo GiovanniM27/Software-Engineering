@@ -14,7 +14,15 @@ public class ConceptualAPIImpl implements ConceptualAPIInterface {
     @Override
     public ComputationResult compute(ComputationInput input) {
 
+        if (input == null) {
+            return new ComputationResult("ERROR");
+        }
+
         int value = input.getValue();
+
+        if (value <= 0) {
+            return new ComputationResult("ERROR");
+        }
 
         List<Integer> factors = new ArrayList<>();
 
