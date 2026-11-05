@@ -36,9 +36,15 @@ public class ComputeEngineIntegrationTest {
                         conceptualApi,
                         processApi);
 
+        InputSource inputSource =
+                new FileInputSource("dummy.txt");
+
+        OutputSource outputSource =
+                new FileOutputSource("dummyOut.txt");
+
         networkApi.configureJob(
-                null,
-                null,
+                inputSource,
+                outputSource,
                 new Delimiters(",", ";"));
 
         org.junit.jupiter.api.Assertions
