@@ -59,4 +59,21 @@ public class TestConceptualAPI {
                 "ERROR",
                 result.getFormattedResult());
     }
+    
+    @Test
+    public void testNullInputValidation() {
+
+        ProcessAPIInterface mockProcessApi =
+                Mockito.mock(ProcessAPIInterface.class);
+
+        ConceptualAPIImpl impl =
+                new ConceptualAPIImpl(mockProcessApi);
+
+        ComputationResult result =
+                impl.compute(null);
+
+        Assertions.assertEquals(
+                "ERROR",
+                result.getFormattedResult());
+    }
 }
