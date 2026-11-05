@@ -36,11 +36,11 @@ public class ComputeEngineIntegrationTest {
                         conceptualApi,
                         processApi);
 
-        InputSource inputSource =
-                new FileInputSource("dummy.txt");
+        apis.InputSource inputSource =
+                org.mockito.Mockito.mock(apis.InputSource.class);
 
-        OutputSource outputSource =
-                new FileOutputSource("dummyOut.txt");
+        apis.OutputSource outputSource =
+                org.mockito.Mockito.mock(apis.OutputSource.class);
 
         networkApi.configureJob(
                 inputSource,
