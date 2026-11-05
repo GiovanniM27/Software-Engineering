@@ -50,4 +50,24 @@ public class ComputeEngineIntegrationTest {
         org.junit.jupiter.api.Assertions
                 .assertFalse(outputValues.isEmpty());
     }
+    
+    @org.junit.jupiter.api.Test
+    public void testMissingInputFileHandledGracefully() {
+
+        ProcessAPIImpl processApi =
+                new ProcessAPIImpl();
+
+        IntegerStream result =
+                processApi.readInput(
+                        new FileInputSource(
+                                "file-does-not-exist.txt"));
+
+        org.junit.jupiter.api.Assertions
+                .assertNotNull(result);
+
+        org.junit.jupiter.api.Assertions
+                .assertEquals(
+                        0,
+                        result.getValues().length);
+    }
 }
