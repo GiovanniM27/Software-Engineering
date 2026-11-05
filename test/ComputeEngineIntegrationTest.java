@@ -6,6 +6,10 @@ import apis.Delimiters;
 import apis.NetworkAPIImpl;
 import apis.ProcessAPIInterface;
 
+import apis.ProcessAPIImpl;
+import apis.IntegerStream;
+import apis.FileInputSource;
+
 public class ComputeEngineIntegrationTest {
 
     @org.junit.jupiter.api.Test
